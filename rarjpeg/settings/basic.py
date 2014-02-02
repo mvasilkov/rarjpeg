@@ -39,4 +39,6 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = path_to('_pub')
 STATIC_URL = '/pub/'
 
+STATICFILES_DIRS = (path_to('pub'),)
+
 ROOT_URLCONF = 'rarjpeg.urls'
