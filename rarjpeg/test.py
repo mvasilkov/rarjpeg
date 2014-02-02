@@ -5,5 +5,8 @@ class BasicTest(SimpleTestCase):
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
 
+        res = self.client.get('/robots.txt')
+        self.assertEqual(res.status_code, 200)
+
         res = self.client.get('/not/found')
         self.assertEqual(res.status_code, 404)

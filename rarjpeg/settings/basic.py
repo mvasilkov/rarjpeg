@@ -36,7 +36,7 @@ path_to = lambda s: os.path.join(OUR_ROOT, s)
 MEDIA_ROOT = path_to('media')
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = path_to('pub')
+STATIC_ROOT = path_to('_pub')
 STATIC_URL = '/pub/'
 
 ROOT_URLCONF = 'rarjpeg.urls'

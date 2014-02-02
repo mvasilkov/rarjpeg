@@ -15,3 +15,9 @@ python: requirements.txt
 	cd /tmp; curl -C - '-#' $(setuptools) | $(python)
 	$(easy_install) pip
 	$(pip) install -r requirements.txt
+
+_pub: python
+	./manage.py collectstatic -l
+
+clean:
+	rm -rf _pub python
