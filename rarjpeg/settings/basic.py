@@ -9,6 +9,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -21,6 +22,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 TIME_ZONE = 'Asia/Jerusalem'
+
+USE_TZ = True
 
 LANGUAGE_CODE = 'ru-RU'
 
