@@ -11,6 +11,8 @@ test: python
 
 python: requirements.txt
 	- pyvenv-$(python_version) python
+	mkdir -p python/local
+	- ln -s ../bin python/local/bin
 	rm -f $(site_packages)/setuptools*.{egg,pth} # setuptools bug
 	cd /tmp; curl -C - '-#' $(setuptools) | $(python)
 	$(easy_install) pip
