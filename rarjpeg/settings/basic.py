@@ -39,4 +39,6 @@ STATIC_URL = '/pub/'
 
 STATICFILES_DIRS = (OUR_ROOT.child('pub'),)
 
+TEMPLATE_DIRS = (OUR_ROOT.child('templates'),)
+
 ROOT_URLCONF = 'rarjpeg.urls'

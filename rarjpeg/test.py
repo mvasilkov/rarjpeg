@@ -6,7 +6,7 @@ class BasicTest(SimpleTestCase):
     def test_res_codes(self):
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(res['Content-Type'], 'text/html')
+        self.assertEqual(res['Content-Type'][:9], 'text/html')
 
         res = self.client.get('/favicon.ico')
         self.assertEqual(res.status_code, 200)
