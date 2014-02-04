@@ -2,9 +2,6 @@
 Django
 dj-database-url
 django-annoying
-django-debug-toolbar
 django-extensions
 django-mptt
-ipython
-pep8
 psycopg2

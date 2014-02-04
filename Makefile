@@ -7,7 +7,7 @@ setuptools     = https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 site_packages  = $(this_dir)/python/lib/python$(python_version)/site-packages
 pep8           = $(python) python/bin/pep8
 
-test: python
+test: python_dev
 	$(pep8) rarjpeg
 	./manage.py test -v2
 
@@ -19,6 +19,9 @@ python: requirements.txt
 	cd /tmp; curl -C - '-#' $(setuptools) | $(python)
 	$(easy_install) pip
 	$(pip) install -r requirements.txt
+
+python_dev: python requirements_dev.txt
+	$(pip) install -r requirements_dev.txt
 
 _pub: python
 	./manage.py collectstatic -l
