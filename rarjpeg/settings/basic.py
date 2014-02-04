@@ -1,4 +1,4 @@
-import os.path
+from unipath import Path
 
 DATABASES = {}
 
@@ -29,16 +29,14 @@ LANGUAGE_CODE = 'ru-RU'
 
 USE_I18N = USE_L10N = False
 
-OUR_ROOT = os.path.realpath(os.path.dirname(__file__) + '/../..')
+OUR_ROOT = Path(__file__).ancestor(3)
 
-path_to = lambda s: os.path.join(OUR_ROOT, s)
-
-MEDIA_ROOT = path_to('media')
+MEDIA_ROOT = OUR_ROOT.child('media')
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = path_to('_pub')
+STATIC_ROOT = OUR_ROOT.child('_pub')
 STATIC_URL = '/pub/'
 
-STATICFILES_DIRS = (path_to('pub'),)
+STATICFILES_DIRS = (OUR_ROOT.child('pub'),)
 
 ROOT_URLCONF = 'rarjpeg.urls'

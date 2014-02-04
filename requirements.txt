@@ -1,3 +1,4 @@
+-e git://github.com/mvasilkov/Unipath.git#egg=Unipath
 Django
 dj-database-url
 django-annoying
