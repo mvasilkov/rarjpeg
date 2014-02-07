@@ -6,12 +6,19 @@ pip            = $(python) $(this_dir)/python/bin/pip$(python_version)
 setuptools     = https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 site_packages  = $(this_dir)/python/lib/python$(python_version)/site-packages
 pep8           = $(python) python/bin/pep8
+bower_version  = 1.2
 
 test: python_dev
 	$(pep8) rarjpeg
 	./manage.py test -v2
 
-python: requirements.txt
+dependencies:
+	# Python $(python_version)
+	python$(python_version) -h >/dev/null
+	# Bower $(bower_version)
+	[[ $$(bower -v) == $(bower_version)* ]]
+
+python: dependencies requirements.txt
 	- pyvenv-$(python_version) python
 	mkdir -p python/local
 	- ln -s ../bin python/local/bin
