@@ -1,5 +1,6 @@
 *.pyc
 .DS_Store
+/.make/
 /_pub/
 /node_modules/
 /python/

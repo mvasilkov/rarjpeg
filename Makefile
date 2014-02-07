@@ -7,18 +7,20 @@ setuptools     = https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 site_packages  = $(this_dir)/python/lib/python$(python_version)/site-packages
 pep8           = $(python) python/bin/pep8
 bower_version  = 1.2
+tap            = mkdir -p .make; touch
 
-test: python_dev
+test: .make/python_dev
 	$(pep8) rarjpeg
 	./manage.py test -v2
 
-dependencies:
+.make/dependencies:
 	# Python $(python_version)
 	python$(python_version) -h >/dev/null
 	# Bower $(bower_version)
 	[[ $$(bower -v) == $(bower_version)* ]]
+	$(tap) $@
 
-python: dependencies requirements.txt
+python: .make/dependencies requirements.txt
 	- pyvenv-$(python_version) python
 	mkdir -p python/local
 	- ln -s ../bin python/local/bin
@@ -27,8 +29,9 @@ python: dependencies requirements.txt
 	$(easy_install) pip
 	$(pip) install -r requirements.txt
 
-python_dev: python requirements_dev.txt
+.make/python_dev: python requirements_dev.txt
 	$(pip) install -r requirements_dev.txt
+	$(tap) $@
 
 _pub: python
 	./manage.py collectstatic -l

@@ -5,9 +5,10 @@ from urllib.robotparser import RobotFileParser
 @override_settings(DEBUG=True)
 class BasicTest(SimpleTestCase):
     def test_res_codes(self):
-        res = self.client.get('/')
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(res['Content-Type'][:9], 'text/html')
+        for url in ('', 'admin/'):
+            res = self.client.get('/' + url)
+            self.assertEqual(res.status_code, 200)
+            self.assertEqual(res['Content-Type'][:9], 'text/html')
 
         res = self.client.get('/favicon.ico')
         self.assertEqual(res.status_code, 200)
