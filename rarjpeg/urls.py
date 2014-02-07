@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', render_to('index.html')(lambda req: {})),
+    url(r'', include('django_browserid.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^(favicon\.ico|robots\.txt)$', serve),
 )
