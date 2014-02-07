@@ -2,6 +2,7 @@
 .DS_Store
 /.make/
 /_pub/
+/bower_components/
 /node_modules/
 /python/
 __pycache__/

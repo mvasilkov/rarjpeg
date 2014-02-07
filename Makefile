@@ -33,8 +33,11 @@ python: .make/dependencies requirements.txt
 	$(pip) install -r requirements_dev.txt
 	$(tap) $@
 
-_pub: python
+bower_components: .make/dependencies bower.json
+	bower install
+
+_pub: python bower_components
 	./manage.py collectstatic -l
 
 clean:
-	rm -rf _pub python
+	rm -rf _pub bower_components python
