@@ -10,7 +10,7 @@ bower_version  = 1.2
 tap            = mkdir -p .make; touch
 
 test: .make/python_dev
-	$(pep8) rarjpeg
+	$(pep8) rarjpeg manage.py
 	./manage.py test -v2
 
 .make/dependencies:

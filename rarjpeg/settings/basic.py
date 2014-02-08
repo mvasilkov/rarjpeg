@@ -27,6 +27,8 @@ AUTHENTICATION_BACKENDS = (
     'django_browserid.auth.BrowserIDBackend',
 )
 
+# -- time and locale --
+
 TIME_ZONE = 'Asia/Jerusalem'
 
 USE_TZ = True
@@ -34,6 +36,8 @@ USE_TZ = True
 LANGUAGE_CODE = 'ru-RU'
 
 USE_I18N = USE_L10N = False
+
+# -- paths and urls --
 
 OUR_ROOT = Path(__file__).ancestor(3)
 
