@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 this_dir       = '$(shell pwd)'
 python_version = 3.3
 python         = $(this_dir)/python/bin/python$(python_version)
