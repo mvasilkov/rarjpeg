@@ -1,5 +1,6 @@
 *.pyc
 .DS_Store
+/.cache/
 /.make/
 /_pub/
 /bower_components/

@@ -11,6 +11,8 @@ pep8           := $(python) python/bin/pep8
 bower_version  := 1.2
 tap            := mkdir -p .make; touch
 
+export PIP_DOWNLOAD_CACHE = .cache
+
 test: .make/python_dev
 	$(pep8) rarjpeg manage.py
 	./manage.py test -v2
