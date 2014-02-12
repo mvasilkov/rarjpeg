@@ -5,6 +5,6 @@
 /_pub/
 /bower_components/
 /node_modules/
-/pub/bower/
+/pub/vendor/
 /python/
 __pycache__/

@@ -38,12 +38,12 @@ python: .make/dependencies requirements.txt
 	$(tap) $@
 
 bower_components: .make/dependencies bower.json
-	mkdir -p pub/bower
+	mkdir -p pub/vendor
 	bower install
-	bower list --paths | bin/bower_ln.js | xargs -I _ -n 1 ln -F _ pub/bower/
+	bower list --paths | bin/bower_ln.js | xargs -I _ -n 1 ln -F _ pub/vendor/
 
 _pub: python bower_components
 	./manage.py collectstatic -l
 
 clean:
-	rm -rf .make _pub bower_components pub/bower python
+	rm -rf .make _pub bower_components pub/vendor python

@@ -1,5 +1,6 @@
 from django.test import SimpleTestCase, LiveServerTestCase
 from django.test.utils import override_settings
+import requests
 from urllib.robotparser import RobotFileParser
 
 @override_settings(DEBUG=True)
@@ -23,7 +24,7 @@ class BasicTest(SimpleTestCase):
         self.assertEqual(res['Content-Type'], 'text/html')
 
 @override_settings(DEBUG=True)
-class RobotsTest(LiveServerTestCase):
+class StaticTest(LiveServerTestCase):
     robots = ('Googlebot', 'Yandex')
 
     def test_robots_txt(self):
@@ -37,3 +38,8 @@ class RobotsTest(LiveServerTestCase):
         url = self.live_server_url + '/admin/'
         for robot in self.robots:
             self.assertFalse(parser.can_fetch(robot, url))
+
+    def test_vendor_js(self):
+        res = requests.get(self.live_server_url + '/pub/vendor/jquery.js')
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.headers['Content-Type'], 'application/javascript')

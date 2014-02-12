@@ -7,3 +7,4 @@ django-extensions
 django-mptt
 mmh3
 psycopg2
+requests
