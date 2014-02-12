@@ -5,4 +5,5 @@ dj-database-url
 django-annoying
 django-extensions
 django-mptt
+mmh3
 psycopg2
