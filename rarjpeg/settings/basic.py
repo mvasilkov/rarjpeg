@@ -1,4 +1,5 @@
 from unipath import Path
+from .util import username
 
 DATABASES = {}
 
@@ -42,9 +43,11 @@ USE_I18N = USE_L10N = False
 OUR_ROOT = Path(__file__).ancestor(3)
 
 MEDIA_ROOT = OUR_ROOT.child('media')
+
 MEDIA_URL = '/media/'
 
 STATIC_ROOT = OUR_ROOT.child('_pub')
+
 STATIC_URL = '/pub/'
 
 STATICFILES_DIRS = (OUR_ROOT.child('pub'),)
@@ -52,3 +55,9 @@ STATICFILES_DIRS = (OUR_ROOT.child('pub'),)
 TEMPLATE_DIRS = (OUR_ROOT.child('templates'),)
 
 ROOT_URLCONF = 'rarjpeg.urls'
+
+LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL_FAILURE = LOGOUT_REDIRECT_URL = '/'
+
+# -- auth and other things --
+
+BROWSERID_USERNAME_ALGO = username
