@@ -1,5 +1,6 @@
 from django.test import SimpleTestCase, LiveServerTestCase
 from django.test.utils import override_settings
+from admin_honeypot.models import LoginAttempt
 import requests
 from urllib.robotparser import RobotFileParser
 
@@ -43,3 +44,15 @@ class StaticTest(LiveServerTestCase):
         res = requests.get(self.live_server_url + '/pub/vendor/jquery.js')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.headers['Content-Type'], 'application/javascript')
+
+class HoneypotTest(SimpleTestCase):
+    def test_admin_honeypot(self):
+        self.assertEqual(LoginAttempt.objects.count(), 0)
+        res = self.client.post('/admin/', {'username': 'admin',
+                                           'password': 'admin1'})
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(LoginAttempt.objects.count(), 1)
+        att = LoginAttempt.objects.get(id=1)
+        self.assertEqual(att.username, 'admin')
+        self.assertEqual(att.password, 'admin1')
+        self.assertEqual(att.ip_address, '127.0.0.1')
