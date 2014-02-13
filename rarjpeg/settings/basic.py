@@ -12,6 +12,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_browserid',
     'django_extensions',
+    'admin_honeypot',
 )
 
 MIDDLEWARE_CLASSES = (
