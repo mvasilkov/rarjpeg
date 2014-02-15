@@ -50,7 +50,9 @@ class HoneypotTest(SimpleTestCase):
         self.assertEqual(LoginAttempt.objects.count(), 0)
         res = self.client.post('/admin/', {'username': 'admin',
                                            'password': 'admin1'})
-        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, 'Please enter the correct username and '
+                            'password for a staff account. Note that both '
+                            'fields may be case-sensitive.')
         self.assertEqual(LoginAttempt.objects.count(), 1)
         att = LoginAttempt.objects.get(id=1)
         self.assertEqual(att.username, 'admin')
