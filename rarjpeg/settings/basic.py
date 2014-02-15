@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'django_browserid',
     'django_extensions',
     'admin_honeypot',
+    'rarjpeg.ib',
 )
 
 MIDDLEWARE_CLASSES = (
