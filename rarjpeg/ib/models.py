@@ -1,4 +1,5 @@
 from django.db import models
+from functools import lru_cache
 
 class Board(models.Model):
     uri = models.CharField(primary_key=True, max_length=20)
@@ -13,3 +14,7 @@ class Board(models.Model):
 
     class Meta:
         ordering = ('uri',)
+
+@lru_cache(1)
+def get_public_boards():
+    return Board.objects.filter(is_hidden=False)
