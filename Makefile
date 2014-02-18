@@ -41,7 +41,7 @@ python: .make/dependencies requirements.txt
 bower_components: .make/dependencies node_modules bower.json
 	mkdir -p pub/vendor
 	$(bower) install
-	$(bower) list -p | bin/bower_ln.js | xargs -I _ -n 1 ln -F _ pub/vendor/
+	$(bower) list -p | bin/bower_ln.js | xargs -I _ -n 1 ln -f _ pub/vendor/
 
 node_modules: .make/dependencies package.json
 	npm install
