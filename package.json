@@ -1,0 +1,13 @@
+{
+    "name": "rarjpeg",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/mvasilkov/rarjpeg.git"
+    },
+    "dependencies": {
+        "sse4_crc32": "~2.0",
+        "bower": "~1.2"
+    },
+    "private": true
+}
