@@ -11,10 +11,12 @@ pep8           := $(python) python/bin/pep8
 npm_version    := 1.3
 tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
+jshint         := node_modules/.bin/jshint
 
 export PIP_DOWNLOAD_CACHE = .cache
 
-test: .make/python_dev
+test: .make/python_dev node_modules
+	$(jshint) bin
 	$(pep8) rarjpeg manage.py
 	./manage.py test -v2
 

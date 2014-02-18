@@ -6,8 +6,9 @@
         "url": "git://github.com/mvasilkov/rarjpeg.git"
     },
     "dependencies": {
-        "sse4_crc32": "~2.0",
-        "bower": "~1.2"
+        "bower": "~1.2",
+        "jshint": "~2.4",
+        "sse4_crc32": "~2.0"
     },
     "private": true
 }
