@@ -10,7 +10,7 @@ is.on('end', function () {
     assert(files.pop() === '')
     for (var f in files) {
         buf = fs.readFileSync(files[f])
-        res[files[f]] = pad(crc32.calculate(buf).toString(16), 8)
+        res[files[f].substr(1)] = pad(crc32.calculate(buf).toString(16), 8)
     }
     console.log('%j', res)
 })

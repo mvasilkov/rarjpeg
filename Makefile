@@ -15,7 +15,7 @@ jshint         := node_modules/.bin/jshint
 
 export PIP_DOWNLOAD_CACHE = .cache
 
-test: .make/python_dev node_modules
+test: .make/python_dev node_modules _pub.json
 	$(jshint) bin
 	$(pep8) rarjpeg manage.py
 	./manage.py test -v2
@@ -49,7 +49,11 @@ node_modules: .make/dependencies package.json
 	npm install
 
 _pub: python bower_components
-	./manage.py collectstatic -l
+	mkdir -p _pub
+	./manage.py collectstatic --noinput -cl
+
+_pub.json: _pub
+	find _pub -type f -or -type l | bin/crc32_pub.js > _pub.json
 
 clean:
-	rm -rf .make _pub bower_components node_modules pub/vendor python
+	rm -rf .make _pub{.json,} bower_components node_modules pub/vendor python
