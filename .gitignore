@@ -2,6 +2,7 @@
 .DS_Store
 /.cache/
 /.make/
+/_pub.json
 /_pub/
 /bower_components/
 /node_modules/
