@@ -1,5 +1,5 @@
 {% load browserid %}
-{% load staticfiles %}
+{% load ib_tags %}
 <!doctype html>
 <!--
                                    .. .vr
@@ -35,7 +35,7 @@
         <meta name=viewport content="width=device-width, initial-scale=1.0">
         <title>rarjpeg</title>
         {% browserid_css %}
-        <link rel=stylesheet href=pub/rarjpeg.css>
+        <link rel=stylesheet href="{% pub 'rarjpeg.css' %}">
     </head>
     <body>
         {% if user.is_authenticated %}
@@ -44,7 +44,7 @@
             {% browserid_login %}
         {% endif %}
         <p>rarjpeg</p>
-        <script src="{% static 'vendor/jquery.js' %}"></script>
+        <script src="{% pub 'vendor/jquery.js' %}"></script>
         {% browserid_js %}
     </body>
 </html>

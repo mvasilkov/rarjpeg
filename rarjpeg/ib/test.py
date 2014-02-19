@@ -1,5 +1,10 @@
+import re
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
+from django.test.utils import override_settings
 from .models import Board, get_public_boards
+from .templatetags.ib_tags import load_crc, pub
 
 class ModelTest(TestCase):
     def test_board(self):
@@ -12,3 +17,25 @@ class ModelTest(TestCase):
         get_public_boards.cache_clear()
         self.assertNumQueries(1, lambda: len(get_public_boards()))
         self.assertNumQueries(0, lambda: len(get_public_boards()))
+
+def _pub_re(path):
+    return ('^' + re.escape(settings.STATIC_URL + path + '?crc=') +
+            '[a-z0-9]{8}$')
+
+class PubTest(TestCase):
+    def test_load_crc(self):
+        with self.assertRaisesRegex(ImproperlyConfigured, 'File not found: '):
+            load_crc(settings.OUR_ROOT.child('WHARRGARBL'))
+        with self.assertRaisesRegex(ImproperlyConfigured, 'Bad CRC file: '):
+            load_crc(settings.OUR_ROOT.child('requirements.txt'))
+        self.assertIsInstance(load_crc(), dict)
+
+    def test_pub(self):
+        self.assertEqual(pub('WHARRGARBL'), settings.STATIC_URL + 'WHARRGARBL')
+        self.assertRegex(pub('rarjpeg.css'), _pub_re('rarjpeg.css'))
+
+    @override_settings(DEBUG=True)
+    def test_pub_debug(self):
+        with self.assertRaisesRegex(ImproperlyConfigured, 'No CRC for: '):
+            pub('WHARRGARBL')
+        self.assertRegex(pub('rarjpeg.css'), _pub_re('rarjpeg.css'))
