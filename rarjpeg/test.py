@@ -50,6 +50,17 @@ class StaticTest(LiveServerTestCase):
         for robot in self.robots:
             self.assertFalse(parser.can_fetch(robot, url))
 
+    def test_res_codes_gzip(self):
+        res = requests.get(self.live_server_url + '/pub/pt_sans.css.gz')
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.headers['Content-Type'], 'text/css')
+        self.assertEqual(res.headers['Content-Encoding'], 'gzip')
+
+        res = requests.get(self.live_server_url + '/pub/rarjpeg.css')
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.headers['Content-Type'], 'text/css')
+        self.assertNotIn('Content-Encoding', res.headers)
+
     def test_vendor_js(self):
         res = requests.get(self.live_server_url + '/pub/vendor/jquery.js')
         self.assertEqual(res.status_code, 200)
