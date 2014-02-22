@@ -1,3 +1,4 @@
+*.css.gz
 *.pyc
 .DS_Store
 /.cache/

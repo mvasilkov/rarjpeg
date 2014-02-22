@@ -48,12 +48,16 @@ bower_components: .make/dependencies node_modules bower.json
 node_modules: .make/dependencies package.json
 	npm install
 
-_pub: python bower_components
+_pub: python bower_components .make/gzip
 	mkdir -p _pub
 	./manage.py collectstatic --noinput -cl
 
 _pub.json: _pub
 	find _pub -type f -or -type l | bin/crc32_pub.js > _pub.json
+
+.make/gzip: pub/pt_sans.css
+	gzip -9cn pub/pt_sans.css > pub/pt_sans.css.gz
+	$(tap) $@
 
 clean:
 	rm -rf .make _pub{.json,} bower_components node_modules pub/vendor python

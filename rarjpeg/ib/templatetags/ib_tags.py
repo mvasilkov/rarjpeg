@@ -18,6 +18,9 @@ def pub(path):
     global CRC
     if not CRC:
         CRC = load_crc()
+    path_gz = path + '.gz'
+    if path_gz in CRC:
+        path = path_gz
     try:
         crc = '?crc=' + CRC[path]
     except KeyError:
