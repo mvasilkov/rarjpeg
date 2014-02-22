@@ -1,8 +1,18 @@
+from unittest import TestCase
 from django.test import SimpleTestCase, LiveServerTestCase
 from django.test.utils import override_settings
 from admin_honeypot.models import LoginAttempt
+import mimetypes
 import requests
 from urllib.robotparser import RobotFileParser
+
+class SanityTest(TestCase):
+    def assertMimeEncoding(self, path, mime, encoding):
+        self.assertEqual(mimetypes.guess_type(path), (mime, encoding))
+
+    def test_mime_gzip(self):
+        self.assertMimeEncoding('a.css.gz', 'text/css', 'gzip')
+        self.assertMimeEncoding('b.js.gz', 'application/javascript', 'gzip')
 
 @override_settings(DEBUG=True)
 class BasicTest(SimpleTestCase):
