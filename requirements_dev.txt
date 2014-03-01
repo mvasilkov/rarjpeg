@@ -1,3 +1,4 @@
+coverage
 django-debug-toolbar
 ipython
 pep8

@@ -2,6 +2,7 @@
 *.pyc
 .DS_Store
 /.cache/
+/.coverage
 /.make/
 /_pub.json
 /_pub/
