@@ -4,10 +4,11 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.utils import override_settings
 from .models import Board, get_public_boards
-from .templatetags.ib_tags import load_crc, pub
+from .templatetags.ib_tags import load_crc, pub, public_boards
 
 class ModelTest(TestCase):
     def test_board(self):
+        get_public_boards.cache_clear()
         b = Board.objects.create(uri='a', name='Animu')
         self.assertEqual(format(b), '/a/ Animu')
         self.assertEqual(b.get_absolute_url(), '/a/')
@@ -22,7 +23,7 @@ def _pub_re(path):
     return ('^' + re.escape(settings.STATIC_URL + path + '?crc=') +
             '[a-z0-9]{8}$')
 
-class PubTest(TestCase):
+class HelperTest(TestCase):
     def test_load_crc(self):
         with self.assertRaisesRegex(ImproperlyConfigured, 'File not found: '):
             load_crc(settings.OUR_ROOT.child('WHARRGARBL'))
@@ -39,3 +40,8 @@ class PubTest(TestCase):
         with self.assertRaisesRegex(ImproperlyConfigured, 'No CRC for: '):
             pub('WHARRGARBL')
         self.assertRegex(pub('rarjpeg.css'), _pub_re('rarjpeg.css'))
+
+    def test_public_boards(self):
+        get_public_boards.cache_clear()
+        t, g, a = (Board.objects.create(uri=char, name=char) for char in 'tga')
+        self.assertSequenceEqual(public_boards()['boards'], [a, g, t])

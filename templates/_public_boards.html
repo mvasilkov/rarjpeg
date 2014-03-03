@@ -1,0 +1,5 @@
+<ul>
+    {% for b in boards %}
+    <li><a href="{{ b.get_absolute_url }}">{{ b.name }}</a></li>
+    {% endfor %}
+</ul>

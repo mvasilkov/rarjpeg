@@ -15,6 +15,7 @@
 {% block main %}
     <div class="pure-menu pure-menu-open">
         <a class=pure-menu-heading href=/>rarjpeg</a>
+        {% public_boards %}
     </div>
     {% if user.is_authenticated %}
         {% browserid_logout %}

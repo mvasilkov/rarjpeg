@@ -12,7 +12,7 @@ npm_version    := 1.3
 tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
 jshint         := node_modules/.bin/jshint
-vendor_files   := $(addsuffix .gz, $(wildcard pub/vendor/*))
+vendor_files   := $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 
 export PIP_DOWNLOAD_CACHE = .cache
 

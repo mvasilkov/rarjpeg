@@ -2,6 +2,7 @@ from django import template
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 import ujson
+from ..models import get_public_boards
 
 CRC = {}
 
@@ -32,3 +33,8 @@ def pub(path):
 
 register = template.Library()
 register.simple_tag(pub)
+
+def public_boards():
+    return {'boards': get_public_boards()}
+
+register.inclusion_tag('_public_boards.html')(public_boards)
