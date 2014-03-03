@@ -51,7 +51,7 @@ class StaticTest(LiveServerTestCase):
             self.assertFalse(parser.can_fetch(robot, url))
 
     def test_res_codes_gzip(self):
-        res = requests.get(self.live_server_url + '/pub/pt_sans.css.gz')
+        res = requests.get(self.live_server_url + '/pub/vendor/pure.css.gz')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.headers['Content-Type'], 'text/css')
         self.assertEqual(res.headers['Content-Encoding'], 'gzip')
