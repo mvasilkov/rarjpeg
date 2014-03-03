@@ -2,7 +2,8 @@
     "name": "rarjpeg",
     "version": "0.0.1",
     "dependencies": {
-        "jquery": "components/jquery#~2.1"
+        "jquery": "components/jquery#~2.1",
+        "pure": "~0.4"
     },
     "private": true
 }
