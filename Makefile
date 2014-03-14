@@ -12,11 +12,11 @@ npm_version    := 1.3
 tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
 jshint         := node_modules/.bin/jshint
-vendor_files   := $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
+vendor_files    = $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 
 export PIP_DOWNLOAD_CACHE = .cache
 
-test: .make/python_dev node_modules _pub.json
+test: postgresql_running .make/python_dev node_modules _pub.json
 	$(jshint) bin
 	$(pep8) rarjpeg manage.py
 	./manage.py test -v2
@@ -27,6 +27,9 @@ test: .make/python_dev node_modules _pub.json
 	# npm $(npm_version)
 	[[ $$(npm -v) == $(npm_version)* ]]
 	$(tap) $@
+
+postgresql_running:
+	pgrep postgres >/dev/null
 
 python: .make/dependencies requirements.txt
 	- pyvenv-$(python_version) python
