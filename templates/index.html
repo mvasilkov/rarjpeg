@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load browserid %}
 {% load ib_tags %}
+{% load webdesign %}
 
 {% block styles %}
     {{ block.super }}
@@ -17,10 +18,13 @@
         <a class=pure-menu-heading href=/>rarjpeg</a>
         {% public_boards %}
     </div>
+    <!--
     {% if user.is_authenticated %}
         {% browserid_logout %}
     {% else %}
         {% browserid_login %}
     {% endif %}
+    -->
     <p>rarjpeg</p>
+    <p>{% lorem %}</p>
 {% endblock %}

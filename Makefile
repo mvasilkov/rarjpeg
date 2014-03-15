@@ -29,6 +29,7 @@ test: postgresql_running .make/python_dev node_modules _pub.json
 	$(tap) $@
 
 postgresql_running:
+	# PostgreSQL should be running
 	pgrep postgres >/dev/null
 
 python: .make/dependencies requirements.txt
