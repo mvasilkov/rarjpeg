@@ -14,9 +14,11 @@
 {% endblock %}
 
 {% block main %}
-    <div class="pure-menu pure-menu-open">
-        <a class=pure-menu-heading href=/>rarjpeg</a>
-        {% public_boards %}
+    <div class=navbar>
+        <div class="pure-menu pure-menu-open">
+            <a class=pure-menu-heading href=/>rarjpeg</a>
+            {% public_boards %}
+        </div>
     </div>
     <!--
     {% if user.is_authenticated %}
@@ -25,6 +27,8 @@
         {% browserid_login %}
     {% endif %}
     -->
-    <p>rarjpeg</p>
-    <p>{% lorem %}</p>
+    <div class=page>
+        <p>rarjpeg</p>
+        <p>{% lorem %}</p>
+    </div>
 {% endblock %}

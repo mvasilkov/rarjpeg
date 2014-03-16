@@ -1,3 +1,41 @@
 body {
-    font: 14px Segoe UI, Helvetica Neue, FreeSans, sans-serif;
+    font: 14px Segoe UI, PT Sans, Helvetica Neue, FreeSans, sans-serif;
+}
+
+.container {
+    padding-left: 150px;
+}
+
+.navbar {
+    background: #11100f;
+    bottom: 0;
+    left: 150px;
+    margin-left: -150px;
+    position: fixed;
+    top: 0;
+    width: 150px;
+}
+
+.page {
+    padding: 0 20px;
+}
+
+.pure-menu.pure-menu-open {
+    background: transparent;
+    border: 0;
+}
+
+.pure-menu .pure-menu-heading {
+    border: 0;
+    color: #fcc424;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.pure-menu a {
+    color: #fee9ca;
+}
+
+.pure-menu li a:hover, .pure-menu li a:focus {
+    background: #2b211d;
 }
