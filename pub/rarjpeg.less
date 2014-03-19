@@ -1,13 +1,19 @@
+@fonts: Segoe UI, PT Sans, Helvetica Neue, FreeSans, sans-serif;
 @navbar-width: 150px;
 
 body {
-    font: 14px Segoe UI, PT Sans, Helvetica Neue, FreeSans, sans-serif;
+    font: 14px @fonts;
 }
 
 .container {
     padding-left: @navbar-width;
 }
 
+.page {
+    padding: 0 20px;
+}
+
+/* navbar */
 .navbar {
     background: #11100f;
     bottom: 0;
@@ -16,10 +22,6 @@ body {
     position: fixed;
     top: 0;
     width: @navbar-width;
-}
-
-.page {
-    padding: 0 20px;
 }
 
 .pure-menu.pure-menu-open {
@@ -41,3 +43,19 @@ body {
 .pure-menu li a:hover, .pure-menu li a:focus {
     background: #2b211d;
 }
+
+/* meta */
+.meta {
+    padding-top: 10px;
+    position: relative;
+}
+
+.meta .persona-button {
+    font: 14px/16px @fonts;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    vertical-align: bottom;
+}
+
+.meta .persona-button:active, .meta .persona-button:focus { top: 11px; }
