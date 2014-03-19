@@ -60,8 +60,8 @@ _pub: python bower_components pub/rarjpeg.css $(vendor_files)
 	mkdir -p _pub
 	./manage.py collectstatic --noinput -cl
 
-pub/rarjpeg.css:
-	$(lessc) -x pub/rarjpeg.less pub/rarjpeg.css
+pub/rarjpeg.css: pub/rarjpeg.less
+	$(lessc) -x $< $@
 
 %.gz: %; gzip -9cn $< >$@
 

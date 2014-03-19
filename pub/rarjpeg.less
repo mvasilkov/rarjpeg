@@ -1,19 +1,21 @@
+@navbar-width: 150px;
+
 body {
     font: 14px Segoe UI, PT Sans, Helvetica Neue, FreeSans, sans-serif;
 }
 
 .container {
-    padding-left: 150px;
+    padding-left: @navbar-width;
 }
 
 .navbar {
     background: #11100f;
     bottom: 0;
-    left: 150px;
-    margin-left: -150px;
+    left: @navbar-width;
+    margin-left: -@navbar-width;
     position: fixed;
     top: 0;
-    width: 150px;
+    width: @navbar-width;
 }
 
 .page {
