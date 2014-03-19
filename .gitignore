@@ -8,6 +8,7 @@
 /_pub/
 /bower_components/
 /node_modules/
+/pub/rarjpeg.css
 /pub/vendor/
 /python/
 __pycache__/

@@ -12,6 +12,7 @@ npm_version    := 1.3
 tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
 jshint         := node_modules/.bin/jshint
+lessc          := node_modules/.bin/lessc
 vendor_files    = $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 
 export PIP_DOWNLOAD_CACHE = .cache
@@ -49,13 +50,18 @@ bower_components: .make/dependencies node_modules bower.json
 	mkdir -p pub/vendor
 	$(bower) install
 	$(bower) list -p | bin/bower_ln.js | xargs -I _ -n 1 ln -f _ pub/vendor/
+	touch $@
 
 node_modules: .make/dependencies package.json
 	npm install
+	touch $@
 
-_pub: python bower_components $(vendor_files)
+_pub: python bower_components pub/rarjpeg.css $(vendor_files)
 	mkdir -p _pub
 	./manage.py collectstatic --noinput -cl
+
+pub/rarjpeg.css:
+	$(lessc) -x pub/rarjpeg.less pub/rarjpeg.css
 
 %.gz: %; gzip -9cn $< >$@
 
