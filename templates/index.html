@@ -1,34 +1,14 @@
 {% extends 'base.html' %}
-{% load browserid %}
 {% load ib_tags %}
 {% load webdesign %}
-
-{% block styles %}
-    {{ block.super }}
-    {% browserid_css %}
-{% endblock %}
-
-{% block scripts %}
-    {{ block.super }}
-    {% browserid_js %}
-{% endblock %}
 
 {% block main %}
     <div class=navbar>
         <div class="pure-menu pure-menu-open">
-            <a class=pure-menu-heading href=/>rarjpeg</a>
             {% public_boards %}
         </div>
     </div>
     <div class=page>
-        <div class=meta>
-            {% if user.is_authenticated %}
-            {% browserid_logout %}
-            {% else %}
-            {% browserid_login %}
-            {% endif %}
-        </div>
-        <p>rarjpeg</p>
         <p>{% lorem %}</p>
     </div>
 {% endblock %}
