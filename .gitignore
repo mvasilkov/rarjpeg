@@ -4,6 +4,7 @@
 /.cache/
 /.coverage
 /.make/
+/.ropeproject/
 /_pub.json
 /_pub/
 /bower_components/

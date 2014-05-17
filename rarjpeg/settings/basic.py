@@ -1,5 +1,4 @@
 from unipath import Path
-from .util import username
 
 DATABASES = {}
 
@@ -10,7 +9,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'django_browserid',
     'django_extensions',
     'admin_honeypot',
     'rarjpeg.ib',
@@ -27,7 +25,6 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'django_browserid.auth.BrowserIDBackend',
 )
 
 # -- time and locale --
@@ -58,8 +55,4 @@ TEMPLATE_DIRS = (OUR_ROOT.child('templates'),)
 
 ROOT_URLCONF = 'rarjpeg.urls'
 
-LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL_FAILURE = LOGOUT_REDIRECT_URL = '/'
-
 # -- auth and other things --
-
-BROWSERID_USERNAME_ALGO = username

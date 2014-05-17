@@ -1,8 +1,7 @@
 -e git://github.com/mvasilkov/Unipath.git#egg=Unipath
--e git://github.com/dmpayton/django-admin-honeypot.git@develop#egg=django-admin-honeypot
--e git://github.com/mozilla/django-browserid.git#egg=django-browserid
 Django
 dj-database-url
+django-admin-honeypot
 django-annoying
 django-extensions
 django-mptt
