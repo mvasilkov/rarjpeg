@@ -7,7 +7,7 @@ easy_install   := $(python) $(this_dir)/python/bin/easy_install-$(python_version
 pip            := $(python) $(this_dir)/python/bin/pip$(python_version)
 setuptools     := https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 site_packages  := $(this_dir)/python/lib/python$(python_version)/site-packages
-pep8           := $(python) python/bin/pep8
+flake8         := $(python) python/bin/flake8
 npm_version    := 1.3
 tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
@@ -19,7 +19,7 @@ export PIP_DOWNLOAD_CACHE = .cache
 
 test: postgresql_running .make/python_dev node_modules _pub.json
 	$(jshint) bin
-	$(pep8) rarjpeg manage.py
+	$(flake8) rarjpeg manage.py
 	./manage.py test -v2
 
 .make/dependencies:

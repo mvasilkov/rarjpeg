@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    ('^$', render_to('index.html')(lambda req: {})),
+    url('^$', render_to('index.html')(lambda req: {}), name='begin'),
     ('^admin/', include('admin_honeypot.urls')),
     (getattr(settings, 'ADMIN_REGEX', '^_admin/'), include(admin.site.urls)),
 )

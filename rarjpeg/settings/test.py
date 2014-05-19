@@ -18,3 +18,4 @@ class UtilTest(TestCase):
 
         with self.assertRaises(ImproperlyConfigured):
             res = env.WHARRGARBL
+            print(res)
