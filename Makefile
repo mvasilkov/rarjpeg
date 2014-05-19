@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 this_dir       := '$(shell pwd)'
-python_version := 3.3
+python_version := 3.4
 python         := $(this_dir)/python/bin/python$(python_version)
 easy_install   := $(python) $(this_dir)/python/bin/easy_install-$(python_version)
 pip            := $(python) $(this_dir)/python/bin/pip$(python_version)
