@@ -6,7 +6,9 @@ from ..models import get_public_boards
 
 CRC = {}
 
-def load_crc(path=settings.OUR_ROOT.child('_pub.json')):
+def load_crc(path=settings.OUR_ROOT.joinpath('_pub.json')):
+    if not isinstance(path, str):
+        path = str(path)
     try:
         with open(path, encoding='utf8') as crc_file:
             return ujson.loads(crc_file.read())

@@ -1,4 +1,4 @@
-from unipath import Path
+from pathlib import PurePath
 
 DATABASES = {}
 
@@ -39,19 +39,19 @@ USE_I18N = USE_L10N = False
 
 # -- paths and urls --
 
-OUR_ROOT = Path(__file__).ancestor(3)
+OUR_ROOT = PurePath(__file__).parents[2]
 
-MEDIA_ROOT = OUR_ROOT.child('media')
+MEDIA_ROOT = OUR_ROOT.joinpath('media').as_posix()
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = OUR_ROOT.child('_pub')
+STATIC_ROOT = OUR_ROOT.joinpath('_pub').as_posix()
 
 STATIC_URL = '/pub/'
 
-STATICFILES_DIRS = (OUR_ROOT.child('pub'),)
+STATICFILES_DIRS = (OUR_ROOT.joinpath('pub').as_posix(),)
 
-TEMPLATE_DIRS = (OUR_ROOT.child('templates'),)
+TEMPLATE_DIRS = (OUR_ROOT.joinpath('templates').as_posix(),)
 
 ROOT_URLCONF = 'rarjpeg.urls'
 

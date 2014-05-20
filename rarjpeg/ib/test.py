@@ -26,9 +26,9 @@ def _pub_re(path):
 class HelperTest(TestCase):
     def test_load_crc(self):
         with self.assertRaisesRegex(ImproperlyConfigured, 'File not found: '):
-            load_crc(settings.OUR_ROOT.child('WHARRGARBL'))
+            load_crc(settings.OUR_ROOT.joinpath('WHARRGARBL'))
         with self.assertRaisesRegex(ImproperlyConfigured, 'Bad CRC file: '):
-            load_crc(settings.OUR_ROOT.child('requirements.txt'))
+            load_crc(settings.OUR_ROOT.joinpath('requirements.txt'))
         self.assertIsInstance(load_crc(), dict)
 
     def test_pub(self):
