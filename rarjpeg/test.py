@@ -62,7 +62,7 @@ class StaticTest(LiveServerTestCase):
         self.assertNotIn('Content-Encoding', res.headers)
 
     def test_vendor_js(self):
-        res = requests.get(self.live_server_url + '/pub/vendor/jquery.js')
+        res = requests.get(self.live_server_url + '/pub/vendor/jbone.js')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.headers['Content-Type'], 'application/javascript')
 
