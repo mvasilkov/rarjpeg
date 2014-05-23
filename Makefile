@@ -17,9 +17,11 @@ vendor_files    = $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 
 export PIP_DOWNLOAD_CACHE = .cache
 
-test: postgresql_running .make/python_dev node_modules _pub.json
+test: .make/python_dev node_modules manage_test
 	$(jshint) bin
 	$(flake8) rarjpeg manage.py
+
+manage_test: postgresql_running _pub.json
 	./manage.py test -v2
 
 .make/dependencies:
@@ -58,7 +60,7 @@ node_modules: .make/dependencies package.json
 
 _pub: python bower_components pub/rarjpeg.css $(vendor_files)
 	mkdir -p _pub
-	./manage.py collectstatic --noinput -cl
+	./manage.py collectstatic --noinput -cl >.make/collectstatic.log
 
 pub/rarjpeg.css: pub/rarjpeg.less
 	$(lessc) -x $< $@
@@ -66,7 +68,7 @@ pub/rarjpeg.css: pub/rarjpeg.less
 %.gz: %; gzip -9cn $< >$@
 
 _pub.json: _pub
-	find _pub -type f -or -type l | bin/crc32_pub.js > _pub.json
+	find _pub -type f -or -type l | bin/crc32_pub.js >_pub.json
 
 clean:
 	rm -rf .make _pub{.json,} bower_components node_modules pub/vendor python

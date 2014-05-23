@@ -1,8 +1,15 @@
 @fonts: Segoe UI, PT Sans, Helvetica Neue, FreeSans, sans-serif;
+@main-bg: #fff;
+@main-color: #3a4145;
+@navbar-bg: @main-bg;
 @navbar-width: 150px;
+@active-color: #ff2d55;
+@active-bg: lighten(@active-color, 40%);
 
 body {
-    font: 14px @fonts;
+    background: @main-bg;
+    color: @main-color;
+    font: 1em @fonts;
 }
 
 .container {
@@ -15,47 +22,42 @@ body {
 
 /* navbar */
 .navbar {
-    background: #11100f;
+    background: @navbar-bg;
     bottom: 0;
-    left: @navbar-width;
-    margin-left: -@navbar-width;
+    left: 0;
     position: fixed;
     top: 0;
     width: @navbar-width;
 }
 
 .pure-menu.pure-menu-open {
-    background: transparent;
+    background: @navbar-bg;
     border: 0;
 }
 
-.pure-menu .pure-menu-heading {
-    border: 0;
-    color: #fcc424;
-    margin: 0;
-    padding-top: 10px;
+.pure-menu li {
+    margin-bottom: -1px;
 }
 
 .pure-menu a {
-    color: #fee9ca;
+    border-right: 1px solid @navbar-bg;
+    color: @active-color;
 }
 
-.pure-menu li a:hover, .pure-menu li a:focus {
-    background: #2b211d;
+.pure-menu li.goto-10 a {
+    border-top: 0;
+    padding-top: 1em;
 }
 
-/* meta */
-.meta {
-    padding-top: 10px;
-    position: relative;
+.pure-menu li a:hover,
+.pure-menu li a:focus {
+    background: @active-bg;
+    border-color: @active-color;
 }
 
-.meta .persona-button {
-    font: 14px/16px @fonts;
-    position: absolute;
-    right: 0;
-    top: 10px;
-    vertical-align: bottom;
+.pure-menu li a.active,
+.pure-menu li a:active {
+    background: @active-color;
+    border-color: @active-color;
+    color: @navbar-bg;
 }
-
-.meta .persona-button:active, .meta .persona-button:focus { top: 11px; }
