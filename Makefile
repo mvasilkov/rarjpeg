@@ -13,6 +13,7 @@ tap            := mkdir -p .make; touch
 bower          := node_modules/.bin/bower
 jshint         := node_modules/.bin/jshint
 lessc          := node_modules/.bin/lessc
+watchy         := node_modules/.bin/watchy
 vendor_files    = $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 
 export PIP_DOWNLOAD_CACHE = .cache
@@ -65,6 +66,9 @@ _pub: python bower_components pub/rarjpeg.css $(vendor_files)
 pub/rarjpeg.css: pub/rarjpeg.less
 	$(lessc) -x $< $@
 
+watch_less:
+	$(watchy) -w pub/rarjpeg.less -- $(lessc) -x pub/rarjpeg.{less,css}
+
 %.gz: %; gzip -9cn $< >$@
 
 _pub.json: _pub
@@ -72,3 +76,5 @@ _pub.json: _pub
 
 clean:
 	rm -rf .make _pub{.json,} bower_components node_modules pub/vendor python
+
+.PHONY: test manage_test postgresql_running watch_less clean

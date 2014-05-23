@@ -2,6 +2,8 @@
 {% load ib_tags %}
 {% load webdesign %}
 
+{% block name %}{{ ib.name }} @ {{ block.super }}{% endblock %}
+
 {% block main %}
     <div class=navbar>
         <div class="pure-menu pure-menu-open">
@@ -9,6 +11,9 @@
         </div>
     </div>
     <div class=page>
+        <div class=heading>
+            <h1>{{ ib.name }}</h1>
+        </div>
         <p>{% lorem %}</p>
     </div>
 {% endblock %}
