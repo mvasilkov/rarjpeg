@@ -1,6 +1,6 @@
 <ul>
-    <li class=goto-10><a href=/>Rarjpeg</a></li>
+    <li class=goto-10><a {% ifequal active None %}class=active {% endifequal %}href=/>Rarjpeg</a></li>
     {% for b in boards %}
-    <li><a href="{{ b.get_absolute_url }}">{{ b.name }}</a></li>
+    <li><a {% ifequal b active %}class=active {% endifequal %}href="{{ b.get_absolute_url }}">{{ b.name }}</a></li>
     {% endfor %}
 </ul>

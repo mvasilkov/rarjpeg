@@ -6,6 +6,7 @@ from ..models import get_public_boards
 
 CRC = {}
 
+
 def load_crc(path=settings.OUR_ROOT.joinpath('_pub.json')):
     if not isinstance(path, str):
         path = str(path)
@@ -16,6 +17,7 @@ def load_crc(path=settings.OUR_ROOT.joinpath('_pub.json')):
         raise ImproperlyConfigured('File not found: ' + path)
     except ValueError:
         raise ImproperlyConfigured('Bad CRC file: ' + path)
+
 
 def pub(path):
     global CRC
@@ -36,7 +38,9 @@ def pub(path):
 register = template.Library()
 register.simple_tag(pub)
 
-def public_boards():
-    return {'boards': get_public_boards()}
+
+def public_boards(ib=None):
+    return {'boards': get_public_boards(),
+            'active': ib}
 
 register.inclusion_tag('_public_boards.html')(public_boards)

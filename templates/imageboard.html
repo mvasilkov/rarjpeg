@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load ib_tags %}
+{% load webdesign %}
+
+{% block main %}
+    <div class=navbar>
+        <div class="pure-menu pure-menu-open">
+            {% public_boards ib %}
+        </div>
+    </div>
+    <div class=page>
+        <p>{% lorem %}</p>
+    </div>
+{% endblock %}
