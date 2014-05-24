@@ -4,7 +4,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from .models import Board, get_public_boards
+from . import get_public_boards
+from .models import Board
 from .templatetags.ib_tags import load_crc, pub, public_boards
 
 

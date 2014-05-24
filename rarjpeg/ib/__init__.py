@@ -1,4 +1,10 @@
-from .models import Message
+from functools import lru_cache
+from .models import Board, Message
+
+
+@lru_cache(1)
+def get_public_boards():
+    return Board.objects.filter(is_hidden=False)
 
 
 def post_message(motive, **kwargs):

@@ -2,7 +2,8 @@ from django import template
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 import ujson
-from ..models import get_public_boards
+
+from .. import get_public_boards
 
 CRC = {}
 

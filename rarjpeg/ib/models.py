@@ -1,5 +1,4 @@
 from django.db import models
-from functools import lru_cache
 from mptt.models import MPTTModel
 
 
@@ -16,11 +15,6 @@ class Board(models.Model):
 
     class Meta:
         ordering = ('uri',)
-
-
-@lru_cache(1)
-def get_public_boards():
-    return Board.objects.filter(is_hidden=False)
 
 
 class Message(MPTTModel):
