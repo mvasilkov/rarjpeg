@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.utils import override_settings
+
 from .models import Board, get_public_boards
 from .templatetags.ib_tags import load_crc, pub, public_boards
 
@@ -17,8 +18,8 @@ class ModelTest(TestCase):
 
     def test_cache(self):
         get_public_boards.cache_clear()
-        self.assertNumQueries(1, lambda: len(get_public_boards()))
-        self.assertNumQueries(0, lambda: len(get_public_boards()))
+        self.assertNumQueries(1, len, get_public_boards())
+        self.assertNumQueries(0, len, get_public_boards())
 
 
 def _pub_re(path):
