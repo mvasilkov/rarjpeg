@@ -26,7 +26,7 @@ class MessageTest(TestCase):
     def assertLooksLikeASCII(self, s):
         res = []
         for msg in Message.objects.filter(tree_id=self.a[0].tree_id):
-            res.append('>' * max(msg.level-1, 0) + msg.text)
+            res.append('>' * max(msg.level - 1, 0) + msg.text)
 
         self.assertListEqual(res, CLEAN_RE.sub('', s).split())
 
