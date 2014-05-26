@@ -19,7 +19,7 @@ vendor_files    = $(addsuffix .gz, $(filter-out %.gz, $(wildcard pub/vendor/*)))
 export PIP_DOWNLOAD_CACHE = .cache
 
 test: .make/python_dev node_modules manage_test
-	$(jshint) bin
+	$(jshint) bin/*.js pub/*.js
 	$(flake8) rarjpeg manage.py
 
 manage_test: postgresql_running _pub.json

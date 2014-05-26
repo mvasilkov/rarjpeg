@@ -5,6 +5,6 @@ DEBUG = TEMPLATE_DEBUG = True
 
 DATABASES['default'] = dj_database_url.parse('postgres://rarjpeg@/rarjpeg')
 
-INSTALLED_APPS += ('django.contrib.webdesign',)
+INSTALLED_APPS += ('django.contrib.webdesign', 'debug_toolbar')
 
 SECRET_KEY = 'Not really'
