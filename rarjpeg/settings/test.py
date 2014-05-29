@@ -2,6 +2,7 @@ from unittest import TestCase
 from django.core.exceptions import ImproperlyConfigured
 from .util import username, env
 
+
 class UtilTest(TestCase):
     def test_username(self):
         self.assertEqual(username('rememberingsteve@apple.com'),

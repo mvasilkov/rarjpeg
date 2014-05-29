@@ -6,6 +6,7 @@ import mimetypes
 import requests
 from urllib.robotparser import RobotFileParser
 
+
 class SanityTest(TestCase):
     def assertMimeEncoding(self, path, mime, encoding):
         self.assertEqual(mimetypes.guess_type(path), (mime, encoding))
@@ -13,6 +14,7 @@ class SanityTest(TestCase):
     def test_mime_gzip(self):
         self.assertMimeEncoding('a.css.gz', 'text/css', 'gzip')
         self.assertMimeEncoding('b.js.gz', 'application/javascript', 'gzip')
+
 
 @override_settings(DEBUG=True)
 class BasicTest(SimpleTestCase):
@@ -33,6 +35,7 @@ class BasicTest(SimpleTestCase):
         res = self.client.get('/not/found')
         self.assertEqual(res.status_code, 404)
         self.assertEqual(res['Content-Type'], 'text/html')
+
 
 @override_settings(DEBUG=True)
 class StaticTest(LiveServerTestCase):
@@ -65,6 +68,7 @@ class StaticTest(LiveServerTestCase):
         res = requests.get(self.live_server_url + '/pub/vendor/jbone.js')
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.headers['Content-Type'], 'application/javascript')
+
 
 class HoneypotTest(SimpleTestCase):
     def test_admin_honeypot(self):
