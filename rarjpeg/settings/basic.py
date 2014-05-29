@@ -27,6 +27,15 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 # -- time and locale --
 
 TIME_ZONE = 'Asia/Jerusalem'

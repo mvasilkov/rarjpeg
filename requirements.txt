@@ -1,3 +1,4 @@
+-e git://github.com/mvasilkov/pylibmc.git@py3k#egg=pylibmc
 Django
 dj-database-url
 django-admin-honeypot
