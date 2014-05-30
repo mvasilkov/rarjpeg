@@ -22,7 +22,7 @@ test: .make/python_dev node_modules manage_test
 	$(jshint) bin/*.js pub/*.js
 	$(flake8) rarjpeg manage.py
 
-manage_test: postgresql_running _pub.json
+manage_test: memcached_running postgresql_running _pub.json
 	./manage.py test -v2
 
 .make/dependencies:
@@ -31,6 +31,10 @@ manage_test: postgresql_running _pub.json
 	# npm $(npm_version)
 	[[ $$(npm -v) == $(npm_version)* ]]
 	$(tap) $@
+
+memcached_running:
+	# Memcached should be running
+	nc -z 127.0.0.1 11211
 
 postgresql_running:
 	# PostgreSQL should be running
@@ -77,4 +81,4 @@ _pub.json: _pub
 clean:
 	rm -rf .make _pub{.json,} bower_components node_modules pub/vendor python
 
-.PHONY: test manage_test postgresql_running watch_less clean
+.PHONY: test manage_test memcached_running postgresql_running watch_less clean
