@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 from . import get_public_boards
-from .models import Board
+from .models import Board, Message
 from .templatetags.ib_tags import load_crc, pub, public_boards
 
 
@@ -21,6 +21,18 @@ class ModelTest(TestCase):
         get_public_boards.cache_clear()
         self.assertNumQueries(1, len, get_public_boards())
         self.assertNumQueries(0, len, get_public_boards())
+
+    def test_msg_manager(self):
+        b = Board.objects.create(uri='a', name='Animu')
+        msg = Message.objects.create(board=b)
+
+        res = Message.objects.get(board=b)
+        self.assertEqual(res, msg)
+        self.assertFalse(hasattr(res, 'thread_pubdate'))
+
+        res = Message.threads.get(board=b)
+        self.assertEqual(res, msg)
+        self.assertEqual(res.thread_pubdate, msg.pubdate)
 
 
 def _pub_re(path):

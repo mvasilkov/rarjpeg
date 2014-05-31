@@ -13,6 +13,10 @@ class MessageTest(TestCase):
         cls.board = Board.objects.create(uri='a', name='Animu')
 
     @classmethod
+    def tearDownClass(cls):
+        cls.board.delete()
+
+    @classmethod
     def _msg(cls, *args, **kwargs):
         return post_message(*args, board=cls.board, **kwargs)
 
